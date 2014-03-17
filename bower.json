@@ -1,0 +1,20 @@
+{
+  "name": "purescript-pattern-arrows",
+  "version": "0.0.0",
+  "homepage": "https://github.com/purescript/purescript-pattern-arrows",
+  "authors": [
+    "Phil Freeman <paf31@cantab.net>"
+  ],
+  "description": "Arrows for pretty printing",
+  "keywords": [
+    "purescript"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "externs",
+    "js"
+  ]
+}
