@@ -1,7 +1,7 @@
 module Text.Pretty.PatternArrows where
 
 import Prelude
-import Data.Tuple
+import Data.Tuple (Tuple(..), uncurry)
 import Data.Array
 import Data.Foldable
 import Data.Maybe
