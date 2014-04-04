@@ -3,7 +3,7 @@ module Main where
 import Prelude
 import Data.Maybe
 import Data.Tuple
-import Control.Arrow
+import Control.Arrow ((<+>))
 import Text.Pretty.PatternArrows
 
 data Expr 
