@@ -13,7 +13,7 @@ module.exports = function(grunt) {
             },
             lib: {
                 src:
-                    [ "src/**/*.purs.hs"
+                    [ "src/**/*.purs"
                     , "examples/**/*.purs.hs"
                     , "bower_components/purescript-*/src/**/*.purs"
                     , "bower_components/purescript-*/src/**/*.purs.hs"
