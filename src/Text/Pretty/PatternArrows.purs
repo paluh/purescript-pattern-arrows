@@ -32,7 +32,7 @@ instance arrowPattern :: Arrow (Pattern u) where
   first p = Pattern $ \(Tuple b d) -> flip Tuple d <$> runPattern p b
 
 instance arrowZeroPattern :: ArrowZero (Pattern u) where
-  zeroArrow = Pattern $ \_ -> lift Nothing
+  azero = Pattern $ \_ -> lift Nothing
 
 instance arrowPlusPattern :: ArrowPlus (Pattern u) where
   (<+>) p q = Pattern $ \a -> StateT $ \s -> 
