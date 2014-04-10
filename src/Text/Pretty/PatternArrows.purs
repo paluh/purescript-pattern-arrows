@@ -23,9 +23,11 @@ runPattern (Pattern f) a = f a
 instance functorPattern :: Functor (Pattern u a) where
   (<$>) f (Pattern p) = Pattern $ \a -> f <$> p a
 
+instance semigroupoidPattern :: Semigroupoid (Pattern u) where
+  (<<<) (Pattern f) (Pattern g) = Pattern $ f <=< g
+
 instance categoryPattern :: Category (Pattern u) where
   id = Pattern $ \a -> return a
-  (<<<) (Pattern f) (Pattern g) = Pattern $ f <=< g
 
 instance arrowPattern :: Arrow (Pattern u) where
   arr f = Pattern $ \a -> return $ f a
@@ -35,7 +37,7 @@ instance arrowZeroPattern :: ArrowZero (Pattern u) where
   azero = Pattern $ \_ -> lift Nothing
 
 instance arrowPlusPattern :: ArrowPlus (Pattern u) where
-  (<+>) p q = Pattern $ \a -> StateT $ \s -> 
+  (<+>) p q = Pattern $ \a -> StateT $ \s ->
                 case runStateT (runPattern p a) s of
                   Nothing -> runStateT (runPattern q a) s
                   Just r -> Just r
@@ -141,7 +143,7 @@ toPatternEndo (Operator op) = runPatternEndo op
 -- Build a pretty printer from an operator table and an indecomposable pattern
 --
 buildPrettyPrinter :: forall u a r. OperatorTable u a r -> Pattern u a r -> Pattern u a r
-buildPrettyPrinter table p = 
+buildPrettyPrinter table p =
   let fs = map (map toPatternEndo) $ runOperatorTable table in
   foldl (\p' ops -> foldl1 (<+>) (flip map ops $ \f -> f p' <+> p')) p $ fs
 
