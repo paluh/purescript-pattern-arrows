@@ -2,7 +2,7 @@ module Text.Pretty.PatternArrows where
 
 import Prelude
 import Data.Tuple (Tuple(..), uncurry)
-import Data.Array
+import Data.Array (map)
 import Data.Foldable
 import Data.Maybe
 import Control.Arrow
