@@ -6,7 +6,7 @@ import Data.Array
 import Data.Foldable
 import Data.Maybe
 import Control.Arrow
-import Control.Monad
+import Control.Bind
 import Control.Monad.Trans
 import Control.Monad.State.Trans
 
