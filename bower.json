@@ -18,12 +18,7 @@
     "js"
   ],
   "dependencies": {
-    "purescript-control": "*",
-    "purescript-tuples": "*",
-    "purescript-arrays": "*",
-    "purescript-foldable-traversable": "*",
-    "purescript-maybe": "*",
-    "purescript-transformers": "*",
-    "purescript-arrows": "*"
+    "purescript-prelude": "^4.1.1",
+    "purescript-profunctor": "^4.0.0"
   }
 }

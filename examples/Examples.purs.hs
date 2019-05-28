@@ -37,7 +37,7 @@ app' _ = Nothing
 
 expr :: forall u. Pattern u Expr String
 expr = fix $ \p -> buildPrettyPrinter opTable (var <+> parenthesize p)
- 
+
 opTable :: forall u. OperatorTable u Expr String
 opTable = OperatorTable
           [ [ Operator (assocL app $ \e1 e2 -> e1 ++ " " ++ e2) ]
