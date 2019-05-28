@@ -5,12 +5,11 @@ import Prelude
 import Control.Alt (class Alt, (<|>))
 import Control.Alternative (class Alternative)
 import Control.Lazy (class Lazy)
-import Control.Monad.Error.Class (catchError)
-import Control.Monad.State (StateT, evalStateT)
+import Control.Monad.State (StateT(..), evalStateT, runStateT)
 import Control.Monad.Trans.Class (lift)
 import Control.Plus (class Plus)
 import Data.Foldable (foldl)
-import Data.Maybe (Maybe)
+import Data.Maybe (Maybe(..))
 import Data.NonEmpty (NonEmpty, foldl1)
 import Data.Profunctor (class Profunctor)
 import Data.Profunctor.Star (Star(..))
@@ -32,7 +31,10 @@ derive newtype instance functorPattern :: Functor (Pattern u a)
 derive newtype instance applyPattern :: Apply (Pattern u a)
 derive newtype instance applicativePattern :: Applicative (Pattern u a)
 instance altPattern :: Alt (Pattern u a) where
-  alt f g = Pattern $ Star $ \a -> runPattern f a `catchError` (const $ runPattern g a)
+  alt f g = Pattern $ Star $ \a → StateT \u →
+    case runStateT (runPattern f a) u of
+      Nothing → runStateT (runPattern g a) u
+      r → r
 derive newtype instance plusPattern :: Plus (Pattern u a)
 derive newtype instance alternativePattern :: Alternative (Pattern u a)
 instance lazyPattern :: Lazy (Pattern u a b) where
