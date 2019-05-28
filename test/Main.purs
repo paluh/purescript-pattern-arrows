@@ -39,7 +39,6 @@ table = OperatorTable
   , NonEmpty.singleton (Operator (wrap abstraction $ \a e -> "\\" <> a <> " -> " <> e))
   ]
 
-
 printer :: forall u. Pattern u LambdaExpr String
 printer = fix \p ->
   buildPrettyPrinter table (variable <|> (\s -> "(" <> s <> ")") <$> p)

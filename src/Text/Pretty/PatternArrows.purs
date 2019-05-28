@@ -31,10 +31,10 @@ derive newtype instance functorPattern :: Functor (Pattern u a)
 derive newtype instance applyPattern :: Apply (Pattern u a)
 derive newtype instance applicativePattern :: Applicative (Pattern u a)
 instance altPattern :: Alt (Pattern u a) where
-  alt f g = Pattern $ Star $ \a → StateT \u →
+  alt f g = Pattern $ Star $ \a -> StateT \u ->
     case runStateT (runPattern f a) u of
-      Nothing → runStateT (runPattern g a) u
-      r → r
+      Nothing -> runStateT (runPattern g a) u
+      r -> r
 derive newtype instance plusPattern :: Plus (Pattern u a)
 derive newtype instance alternativePattern :: Alternative (Pattern u a)
 instance lazyPattern :: Lazy (Pattern u a b) where
