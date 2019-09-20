@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "homepage": "https://github.com/purescript/purescript-pattern-arrows",
   "authors": [
-    "Phil Freeman <paf31@cantab.net>"
+    "Phil Freeman <paf31@cantab.net>",
+    "Tomasz Rybarczyk (aka paluh)"
   ],
   "description": "Arrows for pretty printing",
   "keywords": [
